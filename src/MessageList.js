@@ -16,7 +16,6 @@ export default class MessageList extends React.Component {
   }
 
   render() {
-    console.log('render MessageList');
     return (
       <div className="cell" style={this.props.style}>
         <Cells>
@@ -42,7 +41,6 @@ export default class MessageList extends React.Component {
             <CellFooter/>
           </Cell>
         </Cells>
-
       </div>
     );
   }
