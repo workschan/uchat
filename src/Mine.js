@@ -2,15 +2,7 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle'
 
-import {
-  Page,
-  CellsTitle,
-  Cells,
-  Cell,
-  CellBody,
-  CellHeader,
-  CellFooter,
-} from 'react-weui';
+import {Cell, CellBody, CellFooter, CellHeader, Cells, } from 'react-weui';
 
 export default class Mine extends React.Component {
 

@@ -5,15 +5,7 @@ import faComment from '@fortawesome/fontawesome-free-solid/faComment'
 import faAddressBook from '@fortawesome/fontawesome-free-solid/faAddressBook'
 import faUser from '@fortawesome/fontawesome-free-solid/faUser'
 
-import {
-  Tab,
-  TabBody,
-  TabBar,
-  TabBarItem,
-  TabBarIcon,
-  TabBarLabel,
-  Article
-} from 'react-weui';
+import {Tab, TabBar, TabBarItem, TabBody} from 'react-weui';
 
 import MessageList from './MessageList';
 import FriendList from "./FriendList";

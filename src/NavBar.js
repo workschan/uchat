@@ -3,10 +3,7 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faArrowLeft from '@fortawesome/fontawesome-free-solid/faArrowLeft'
 
-import {
-  NavBar,
-  NavBarItem,
-} from 'react-weui';
+import {NavBar, NavBarItem,} from 'react-weui';
 
 export default class NavBarDemo extends React.Component {
   constructor(props) {

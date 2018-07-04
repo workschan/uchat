@@ -3,22 +3,32 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle'
 
 import {
-  Page,
-  CellsTitle,
-  Cells,
+  Button,
   Cell,
   CellBody,
-  CellHeader,
   CellFooter,
+  CellHeader,
+  Cells,
   Form,
   FormCell,
-  Label,
   Input,
-  Button,
-
 } from 'react-weui';
 
 export default class MessageDetail extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      history: [
+    {id: 1, content: 'Hi! man.', mine: true},{id: 2, content: 'Hello! man.', mine: false}
+      ],
+
+      message: '',
+    };
+  }
 
   getDetail() {
     fetch('data/word.txt').then((res)=>{
@@ -32,40 +42,59 @@ export default class MessageDetail extends React.Component {
     });
   }
 
+  handleClick() {
+    console.log(this.state.message)
+    this.state.history.push({id: this.state.history.length+1, content: this.state.message, mine: true});
+    this.setState({
+      history: this.state.history,
+    });
+  }
+
+  handleChange(e) {
+    let value = e.target.value;
+    this.setState({
+      message: value,
+    });
+  }
+
   render() {
     return (
       <div className="cell" style={this.props.style}>
         <Cells className="message">
-          <Cell>
-            <CellHeader>
-              <FontAwesomeIcon icon={faUserCircle} size="2x" style={{marginRight: `15px`}}/>
-            </CellHeader>
-            <CellBody>
-              Hi! man.
-            </CellBody>
-            <CellFooter/>
-          </Cell>
-          <Cell>
-            <CellHeader>
-            </CellHeader>
-            <CellBody style={{textAlign: 'right'}}>
-              Hello! man.
-            </CellBody>
-            <CellFooter>
-              <FontAwesomeIcon icon={faUserCircle} size="2x" style={{ marginLeft: `15px`, color: '#000'}}/>
-            </CellFooter>
-          </Cell>
+
+          {this.state.history.map((item) => (
+            item.mine===false ? (
+              <Cell key={item.id}>
+                <CellHeader>
+                  <FontAwesomeIcon icon={faUserCircle} size="2x" style={{marginRight: `15px`}}/>
+                </CellHeader>
+                <CellBody>
+                  {item.content}
+                </CellBody>
+                <CellFooter/>
+              </Cell>
+            ) : (
+              <Cell key={item.id}>
+                <CellHeader>
+                </CellHeader>
+                <CellBody style={{textAlign: 'right', background: 'green'}}>
+                  {item.content}
+                </CellBody>
+                <CellFooter>
+                  <FontAwesomeIcon icon={faUserCircle} size="2x" style={{ marginLeft: `15px`, color: '#000'}}/>
+                </CellFooter>
+              </Cell>
+            )
+          ))}
         </Cells>
 
-        <Form style={{position: 'inherit', bottom: '0'}}>
-          <FormCell vcode style={{position: 'absolute', bottom: '0'}}>
-            <CellHeader>
-            </CellHeader>
+        <Form style={{position: 'absolute', bottom: '0', width: '100%'}}>
+          <FormCell style={{padding: '0 15px'}}>
             <CellBody>
-              <Input type="tel" placeholder="Enter your cellphone #"/>
+              <Input type="text" value={this.state.message} onChange={this.handleChange} />
             </CellBody>
             <CellFooter>
-              <Button type="vcode">Send</Button>
+              <Button type="vcode" onClick={this.handleClick.bind(this)}>Send</Button>
             </CellFooter>
           </FormCell>
         </Form>

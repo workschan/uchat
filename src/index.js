@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 //import styles
 import 'weui';
 import 'react-weui/build/packages/react-weui.css';
